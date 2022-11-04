@@ -1,5 +1,9 @@
-export default function Home() {
-  return <h1>Hello World</h1>
+interface HomeProps {
+  count: number
+}
+
+export default function Home(props: HomeProps) {
+  return <h1>{props.count}</h1>
 }
 
 export const getServerSideProps = async () => {
@@ -7,4 +11,10 @@ export const getServerSideProps = async () => {
   const data = await response.json()
 
   console.log(data)
+
+  return {
+    props: {
+      count: data.count,
+    },
+  }
 }
